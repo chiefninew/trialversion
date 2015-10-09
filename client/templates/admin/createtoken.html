@@ -1,0 +1,11 @@
+<template name="createtoken">
+  <h1>{{roles}}</h1>
+  <button id="btnGenerateToken">Generate</button>
+  <br/>
+  {{#each tokens}}
+    <label> Token: </label>{{token}}
+    <label> Used: </label>{{used}}
+    <button id="btnDelToken">Delete</button>
+    <br/>
+  {{/each}}
+</template>

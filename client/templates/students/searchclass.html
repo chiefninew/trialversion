@@ -1,0 +1,36 @@
+
+<template name="searchclass">
+  <label>Search: </label><input type="text" value="" id="txtSearchClass">
+  <br/>
+
+  {{#each SearchClass}}
+  <div class="col-lg-3 col-md-3 col-sm-6">
+    {{>ClassData}}
+  </div>
+  {{/each}}
+</template>
+
+<template name="ClassData">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <!--<button type="button" class="close btndelclass" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+        <center><b><h3 class="modal-title">{{description}}</h3></b></center>
+      </div>
+      <div class="modal-body">
+        <h5><b>Section Code:</b> {{sec_code}}</h5>
+        <h5><b>Subject Code:</b> {{subj_code}}</h5>
+        <h5><b>Schedule:</b> {{sched}}</h5>
+        <h5><b>Semester:</b> {{sem}}</h5>
+        <h5><b>School Year:</b> {{school_yr}}</h5>
+        {{#each TeacherInfo teachId}}
+          <h5><b>Instructor:</b> {{username}}</h5>
+        {{/each}}
+        <label >Pass Key: </label><input type="text" name="txtPassKey" id="txtPassKey{{_id}}">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="btnViewClass">View Class</button>
+      </div>
+    </div><!-- /.modal-content -->
+
+</template>

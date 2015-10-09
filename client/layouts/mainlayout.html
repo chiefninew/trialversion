@@ -1,0 +1,21 @@
+<template name="mainlayout">
+  <div style="background-color:black; padding:10px">
+  	<div class="row">
+      <div class="col-lg-offset-1 col-lg-2">
+        <center><label style="font-size:35px; color:white">TS-Toolkit</label></center>
+      </div>
+
+      <div class="col-lg-offset-6 col-lg-1" style="margin-top:8px">
+          <center><button id="btnLogout" class="btn  btn-danger btn-block">Logout</button></center>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">
+      {{>sidebar}}
+    </div>
+    <div class="col-lg-10">
+      {{>yield}}
+    </div>
+  </div>
+</template>

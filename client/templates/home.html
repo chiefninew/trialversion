@@ -1,0 +1,11 @@
+<template name="home">
+  {{#if isInRole 'admin'}}
+    <h1>Admin</h1>
+  {{/if}}
+  {{#if isInRole 'teacher'}}
+    <h1>Teacher</h1>
+  {{/if}}
+  {{#if isInRole 'student'}}
+    {{>searchclass}}
+  {{/if}}
+</template>

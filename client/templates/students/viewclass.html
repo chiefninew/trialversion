@@ -1,0 +1,38 @@
+<template name="viewclass">
+  {{#each classInfo}}
+    <h1>{{description}}</h1>
+  {{/each}}
+
+  <table border="solid" width="100%" class="table-responsive">
+  {{#each loopcol}}
+    <tr>
+      {{#each looprow column}}
+
+        <th>{{>seat}}</th>
+
+      {{/each}}
+    </tr>
+  {{/each}}
+  </table>
+
+</template>
+
+<template name="seat">
+
+
+          {{#if isvacant _id colnum rownum}}<!--if someone is not sitting here, it will display available-->
+            <h4>Available</h4>
+          {{else}}<!--if someone is sitting here, it will display a name-->
+            <div class="modal-header">
+              {{#each name studId}}
+                 <a href="">{{username}}</a>
+              {{/each}}
+            </div>
+          {{/if}}
+            <img src="{{profpic}}" width="100%" class="img-responsive" alt="Responsive image">
+          {{#if yourenothere}}
+            {{#if isvacant ./_id ./colnum ./rownum}}<!--simply check if someone is assign to this seat-->
+              <button class="btn-block btn-default" id="btnHere">Sit Here</button>
+            {{/if}}
+          {{/if}}
+</template>

@@ -1,0 +1,32 @@
+<template name="sidebar">
+  {{#if isInRole 'admin'}}
+    {{>adminnav}}
+  {{/if}}
+  {{#if isInRole 'teacher'}}
+    {{>teachernav}}
+  {{/if}}
+  {{#if isInRole 'student'}}
+    {{>studentnav}}
+  {{/if}}
+</template>
+
+<template name="adminnav">
+  <ul>
+    <li><a href="{{pathFor 'createtoken' _id}}">Create Token</a></li>
+    <li><a href="{{pathFor 'userlist'}}">Users List</a></li>
+  </ul>
+</template>
+
+<template name="studentnav">
+  <ul>
+    <li><a href="{{pathFor 'classsched'}}">Class Schedule</a></li>
+    <li><a href="{{pathFor 'classstanding'}}">Class Standing</a></li>
+  </ul>
+</template>
+
+<template name="teachernav">
+  <ul>
+    <li><a href="{{pathFor 'classes'}}">My Classes</a></li>
+    <li><a href="{{pathFor 'studentslist'}}">My Students</a></li>
+  </ul>
+</template>

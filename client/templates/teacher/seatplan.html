@@ -1,0 +1,88 @@
+
+<template name="seatplan">
+  {{#each classInfo}}
+  <h1>{{description}}</h1>
+  <label>Row:</label><input type="text" id="txtRow" placeholder="{{rows}}">
+  <label>Col:</label><input type="text" id="txtCol" placeholder="{{cols}}">
+  {{/each}}
+  <button id="btnEditClass">Edit</button>
+    <br/>
+  <table>
+  {{#each loopcol}}
+    <tr >
+      {{#each looprow column}}
+
+        <td>{{>info}}</td>
+
+      {{/each}}
+    </tr>
+  {{/each}}
+  </table>
+</template>
+
+<template name="info">
+  <div class="panel panel-default" style="margin-left:20px">
+    <div class="panel-body">
+
+          <img src="{{profpic}}" width="70px">
+
+          {{#if isvacant _id colnum rownum}}<!--if someone is not sitting here, it will display available-->
+            <h6>Available</h6>
+          {{else}}<!--if someone is sitting here, it will display a name-->
+
+          {{#each name studId}}
+             <h6>{{username}}</h6>
+          {{/each}}
+
+          {{/if}}
+
+        {{#if isswapready}}<!--check if the swap is ready to be executed-->
+          {{#if isvacant _id colnum rownum}}<!--simply check if someone is assign to this seat-->
+            <button class="btn btn-block btn-default" id="btnassign" data-toggle="modal" data-target="#btnaddstudhere">Sit Here</button>
+          {{else}}<!--if someone is sitting, it will display this dropdown menu-->
+          <!--dropdown-->
+          <div class="dropdown">
+            <button class="btn btn-default btn-block" width="100%" type="button" id="menu1" data-toggle="dropdown">Action
+              <span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                  <li role="presentation"><a role="menuitem" tabindex="-1"  href="#">Profile</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" id="btnswap" href="#">Swap</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" id="btndrop" href="#">Drop</a></li>
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" id="btnstudremove" href="#">Remove</a></li>
+                </ul>
+          </div><!--/dropdown-->
+          {{/if}}
+          {{else}}<!--if there is a request for swap, The button below the picture will change into swap button-->
+          <button id="btnswap" class="btn btn-block btn-default">Swap</button>
+          {{/if}}
+
+      <!-- Modal -->
+      <div class="modal fade" id="btnaddstudhere" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Add student</h4>
+            </div>
+            <div class="modal-body">
+              <label>Username: </label><input type="text" value="" id="txtSearchStud">
+                <br/>
+                {{#each studentInfos}}<!--output the results-->
+                <div class="form-group">
+
+                    <label for=""> <h4>{{username}}</h4></label>
+                    <button id="btnAddStud" type="button" >ADD</button>
+                </div>
+                {{/each}}
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
